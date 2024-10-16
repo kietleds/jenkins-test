@@ -35,7 +35,7 @@ pipeline {
                     echo "API Token: ${token}"
 
                     def response = sh(script: '''
-                        curl -H "Content-Type:text/xml" -H "Authorization:JWT $token" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=KTN1"
+                        curl -H "Content-Type:text/xml" -H "Authorization:JWT ${token}" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=KTN1"
                     ''', returnStdout: true).trim()
                     echo "API Response: ${response}"
                 }
