@@ -38,6 +38,8 @@ pipeline {
                         curl -H "Content-Type:text/xml" -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzZWE1Y2I5Ny05MDkxLTM1N2YtYjE4Mi1mMmYzMTU2MzhkM2IiLCJpYXQiOjE3MjkwNTk2NzgsImV4cCI6MTcyOTE0NjA3OCwicXNoIjoiY29udGV4dC1xc2giLCJzdWIiOiI2M2ExM2MwNDQ4YjM2N2Q3OGExNDhiMjIiLCJjb250ZXh0Ijp7fX0.UveA7xqaqUpxs1BfwSFFmvgDNIJe74J0e9o_BNvVr_U" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=KTN1"
                     ''', returnStdout: true).trim()
                     echo "API Response: ${response}"
+
+                    echo "Build URL: ${env.BUILD_URL}"
                 }
             }
         }
