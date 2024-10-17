@@ -34,14 +34,36 @@ pipeline {
                     ''', returnStdout: true).trim()
                     echo "API Token: ${token}"
 
-                    def response = sh(script: '''
-                        curl -H "Content-Type:text/xml" -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzZWE1Y2I5Ny05MDkxLTM1N2YtYjE4Mi1mMmYzMTU2MzhkM2IiLCJpYXQiOjE3MjkwNTk2NzgsImV4cCI6MTcyOTE0NjA3OCwicXNoIjoiY29udGV4dC1xc2giLCJzdWIiOiI2M2ExM2MwNDQ4YjM2N2Q3OGExNDhiMjIiLCJjb250ZXh0Ijp7fX0.UveA7xqaqUpxs1BfwSFFmvgDNIJe74J0e9o_BNvVr_U" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=KTN1"
-                    ''', returnStdout: true).trim()
-                    echo "API Response: ${response}"
+                    // def response = sh(script: '''
+                    //     curl -H "Content-Type:text/xml" -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzZWE1Y2I5Ny05MDkxLTM1N2YtYjE4Mi1mMmYzMTU2MzhkM2IiLCJpYXQiOjE3MjkwNTk2NzgsImV4cCI6MTcyOTE0NjA3OCwicXNoIjoiY29udGV4dC1xc2giLCJzdWIiOiI2M2ExM2MwNDQ4YjM2N2Q3OGExNDhiMjIiLCJjb250ZXh0Ijp7fX0.UveA7xqaqUpxs1BfwSFFmvgDNIJe74J0e9o_BNvVr_U" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=KTN1"
+                    // ''', returnStdout: true).trim()
+                    // echo "API Response: ${response}"
 
-                    echo "Build URL: ${env.BUILD_URL}"
+    //                  if [ "$CI_JOB_STATUS" == "success" ]; then RESULT="success"; else RESULT="failed"; fi
+    // - echo $RESULT
+    // - export token=$(curl 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=","clientSecret":"015522653a0f81a9a7670c6840fc6a7f7d8ba8c1cea63489814fe5d877d2ac88"}' | tr -d '"')
+    // - echo $token
+    // - curl -H "Content-Type:application/json" -H "Authorization:JWT $token" --data '{ "jobURL":'"$CI_JOB_STATUS"', "tool":"gitlab", "result":"'"$RESULT"'"  }' "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
+
+    //                 echo "Build URL: ${env.BUILD_URL}"
                 }
             }
         }
+
+
+        post {
+        always {
+            echo 'This will always run after the build, regardless of success or failure.'
+        }
+        success {
+            echo 'This will only run if the build succeeds.'
+        }
+        failure {
+            echo 'This will only run if the build fails.'
+        }
+        unstable {
+            echo 'This will run if the build is marked as unstable.'
+        }
+    }
     }
 }
