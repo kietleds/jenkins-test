@@ -51,7 +51,10 @@ pipeline {
         }
 
 
-        post {
+       
+    }
+
+     post {
         always {
             echo 'This will always run after the build, regardless of success or failure.'
         }
@@ -64,6 +67,5 @@ pipeline {
         unstable {
             echo 'This will run if the build is marked as unstable.'
         }
-    }
     }
 }
