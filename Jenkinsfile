@@ -36,9 +36,9 @@ pipeline {
 
                     echo "Project key: $PROJECT_KEY"
 
-                    def response = sh(script: '''
+                    def response = sh(script: """
                         curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=${PROJECT_KEY}"
-                    ''', returnStdout: true).trim()
+                    """, returnStdout: true).trim()
                     echo "API Response: ${response}"
 
     //                  if [ "$CI_JOB_STATUS" == "success" ]; then RESULT="success"; else RESULT="failed"; fi
