@@ -35,6 +35,7 @@ pipeline {
                     echo "API Token: ${token}"
 
                     echo "Project key: $PROJECT_KEY"
+                    echo "Project key: $TEST_EXECUTION_KEY"
 
                     def response = sh(script: """
                         curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=${PROJECT_KEY}&testExecutionKey=${TEST_EXECUTION_KEY}"
