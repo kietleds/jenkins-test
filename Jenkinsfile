@@ -56,18 +56,18 @@ pipeline {
        
     }
 
-     post {
-        success {
-            def token = sh(script: '''
-                    curl 'https://dev.agiletest.atlas.devsamurai.com/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"YkirK3aKH0GEbTj1ON3xn9n2iMYEgDQe0GVy49f1wcc=","clientSecret":"3e6758a64bcdb1fc559ee4ea737894200b5ec19d6f70d2eb1c8d28d47aa611d8"}' | tr -d '"'
-                ''', returnStdout: true).trim()
-                echo "API Token: ${token}"
-        }
-        failure {
-            echo 'This will only run if the build fails.'
-        }
-        unstable {
-            echo 'This will run if the build is marked as unstable.'
-        }
-    }
+    //  post {
+    //     success {
+    //         def token = sh(script: '''
+    //                 curl 'https://dev.agiletest.atlas.devsamurai.com/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"YkirK3aKH0GEbTj1ON3xn9n2iMYEgDQe0GVy49f1wcc=","clientSecret":"3e6758a64bcdb1fc559ee4ea737894200b5ec19d6f70d2eb1c8d28d47aa611d8"}' | tr -d '"'
+    //             ''', returnStdout: true).trim()
+    //         echo "API Token: ${token}"
+    //     }
+    //     failure {
+    //         echo 'This will only run if the build fails.'
+    //     }
+    //     unstable {
+    //         echo 'This will run if the build is marked as unstable.'
+    //     }
+    // }
 }
