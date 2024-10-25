@@ -29,7 +29,6 @@ pipeline {
         stage('API Call') {
             steps {
                 script {
-                    error("Build failed due to condition X.")
 
                     def token = sh(script: '''
                         curl 'https://dev.agiletest.atlas.devsamurai.com/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"YkirK3aKH0GEbTj1ON3xn9n2iMYEgDQe0GVy49f1wcc=","clientSecret":"3e6758a64bcdb1fc559ee4ea737894200b5ec19d6f70d2eb1c8d28d47aa611d8"}' | tr -d '"'
