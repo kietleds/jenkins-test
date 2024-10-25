@@ -68,10 +68,10 @@ pipeline {
                 $BUILD_URL = env.BUILD_URL
                 echo "Build URL: ${BUILD_URL}"
 
-                // def response = sh(script: """
-                //     curl -H "Content-Type:application/json" -H "Authorization:JWT $token" --data '{ "buildURL": "'"${{ github.repository }}"'", "tool":"jenkins", "result":"success"  }' "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
-                // """, returnStdout: true).trim()
-                // echo "API Response: ${response}"
+                def response = sh(script: """
+                    curl -H "Content-Type:application/json" -H "Authorization:JWT $token" --data '{ "buildURL": "'"$env.BUILD_URL"'", "tool":"jenkins", "result":"success"  }' "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
+                """, returnStdout: true).trim()
+                echo "API Response: ${response}"
 
 
                 echo 'This will run if the build is success.'
