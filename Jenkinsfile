@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        CLIENT_ID = 'xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk='
+        CLIENT_SECRET = '015522653a0f81a9a7670c6840fc6a7f7d8ba8c1cea63489814fe5d877d2ac88'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -80,11 +85,11 @@ pipeline {
 
 
 def getApiToken() {
-    return sh(script: '''
+    return sh(script: """
         curl -s 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' \
-        --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=", "clientSecret":"015522653a0f81a9a7670c6840fc6a7f7d8ba8c1cea63489814fe5d877d2ac88"}' \
+        --data '{"clientId":"'"$env.CLIENT_ID"'", "clientSecret":"'"$env.CLIENT_SECRET"'"}' \
         | tr -d '"'
-    ''', returnStdout: true).trim()
+    """, returnStdout: true).trim()
 }
 
 def sendBuildStatus(token, status) {
