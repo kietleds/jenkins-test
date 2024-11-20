@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         CLIENT_ID = 'xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk='
-        CLIENT_SECRET = '015522653a0f81a9a7670c6840fc6a7f7d8ba8c1cea63489814fe5d877d2ac88'
+        CLIENT_SECRET = 'c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d'
     }
 
     stages {
@@ -36,7 +36,7 @@ pipeline {
                 script {
 
                     def token = sh(script: '''
-                        curl 'https://dev.agiletest.atlas.devsamurai.com/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"YkirK3aKH0GEbTj1ON3xn9n2iMYEgDQe0GVy49f1wcc=","clientSecret":"3e6758a64bcdb1fc559ee4ea737894200b5ec19d6f70d2eb1c8d28d47aa611d8"}' | tr -d '"'
+                        curl 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=","clientSecret":"c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d"}' | tr -d '"'
                     ''', returnStdout: true).trim()
                     echo "API Token: ${token}"
 
@@ -44,17 +44,9 @@ pipeline {
                     echo "Test execution key: $TEST_EXECUTION_KEY"
 
                     def response = sh(script: """
-                        curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://dev.api.agiletest.app/ds/test-executions/junit?projectKey=${PROJECT_KEY}&testExecutionKey=${TEST_EXECUTION_KEY}"
+                        curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://allowing-wallaby-game.ngrok-free.app/ds/test-executions/junit?projectKey=${PROJECT_KEY}&testExecutionKey=${TEST_EXECUTION_KEY}"
                     """, returnStdout: true).trim()
                     echo "API Response: ${response}"
-
-    //                  if [ "$CI_JOB_STATUS" == "success" ]; then RESULT="success"; else RESULT="failed"; fi
-    // - echo $RESULT
-    // - export token=$(curl 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=","clientSecret":"015522653a0f81a9a7670c6840fc6a7f7d8ba8c1cea63489814fe5d877d2ac88"}' | tr -d '"')
-    // - echo $token
-    // - curl -H "Content-Type:application/json" -H "Authorization:JWT $token" --data '{ "jobURL":'"$CI_JOB_STATUS"', "tool":"gitlab", "result":"'"$RESULT"'"  }' "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
-
-    //                 echo "Build URL: ${env.BUILD_URL}"
                 }
             }
         }
