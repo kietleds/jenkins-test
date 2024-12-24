@@ -4,8 +4,6 @@ pipeline {
     environment {
         CLIENT_ID = 'xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk='
         CLIENT_SECRET = 'c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d'
-        PROJECT_KEY = "TEST"
-        TEST_EXECUTION_KEY = "TEST-1"
     }
 
     stages {
@@ -18,7 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'mvn --version'
             }
         }
         
@@ -51,10 +48,10 @@ pipeline {
                     // """, returnStdout: true).trim()
                     // echo "API Response: ${response}"
 
-                    def response = sh(script: """
-                        curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://allowing-wallaby-game.ngrok-free.app/ds/test-executions/junit?projectKey=XGJN&testExecutionKey=XGJN-955"
-                    """, returnStdout: true).trim()
-                    echo "API Response: ${response}"
+                    // def response = sh(script: """
+                    //     curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://allowing-wallaby-game.ngrok-free.app/ds/test-executions/junit?projectKey=XGJN&testExecutionKey=XGJN-955"
+                    // """, returnStdout: true).trim()
+                    // echo "API Response: ${response}"
                 }
             }
         }
