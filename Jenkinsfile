@@ -6,6 +6,13 @@ pipeline {
         CLIENT_SECRET = 'c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d'
     }
 
+    parameters {
+
+        string(defaultValue: "TEST", description: 'Project key', name: 'PROJECT_KEY')
+        string(defaultValue: "TEST-1", description: 'Test execution key', name: 'TEST_EXECUTION_KEY')
+  
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -40,8 +47,8 @@ pipeline {
                     ''', returnStdout: true).trim()
                     echo "API Token: ${token}"
 
-                    // echo "Project key: $PROJECT_KEY"
-                    // echo "Test execution key: $TEST_EXECUTION_KEY"
+                    echo "Project key: $PROJECT_KEY"
+                    echo "Test execution key: $TEST_EXECUTION_KEY"
 
                     // def response = sh(script: """
                     //     curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://allowing-wallaby-game.ngrok-free.app/ds/test-executions/junit?projectKey=${PROJECT_KEY}&testExecutionKey=${TEST_EXECUTION_KEY}"
