@@ -8,8 +8,8 @@ pipeline {
 
     parameters {
 
-        string(defaultValue: "TEST", description: 'Project key', name: 'PROJECT_KEY')
-        string(defaultValue: "TEST-1", description: 'Test execution key', name: 'TEST_EXECUTION_KEY')
+        string defaultValue: "TEST", description: 'Project key', name: 'PROJECT_KEY'
+        string defaultValue: "TEST-1", description: 'Test execution key', name: 'TEST_EXECUTION_KEY'
   
     }
 
