@@ -36,7 +36,7 @@ pipeline {
                 script {
 
                     def token = sh(script: '''
-                        curl 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=","clientSecret":"c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d"}' | tr -d '"'
+                        curl 'https://kietleds.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' --data '{"clientId":"xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk=","clientSecret":"c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d"}' | tr -d '"'
                     ''', returnStdout: true).trim()
                     echo "API Token: ${token}"
 
