@@ -63,7 +63,7 @@ pipeline {
 
 def getApiToken() {
     return sh(script: """
-        curl -s 'https://kiet-le-dss-macbook-air.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' \
+        curl -s 'https://kietleds.tail305ff.ts.net/api/apikeys/authenticate' -X POST -H 'Content-Type:application/json' \
         --data '{"clientId":"'"$env.CLIENT_ID"'", "clientSecret":"'"$env.CLIENT_SECRET"'"}' \
         | tr -d '"'
     """, returnStdout: true).trim()
@@ -73,7 +73,7 @@ def sendBuildStatus(token, status) {
     def response = sh(script: """
         curl -s -H "Content-Type:application/json" -H "Authorization:JWT $token" \
         --data '{ "buildURL": "'"$env.BUILD_URL"'", "tool":"jenkins", "result":"${status}" }' \
-        "https://kiet-le-dss-macbook-air.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
+        "https://kietleds.tail305ff.ts.net/ds/test-executions/${TEST_EXECUTION_KEY}/pipeline/history?projectKey=${PROJECT_KEY}"
     """, returnStdout: true).trim()
 
     echo "API Response for ${status} build: ${response}"
