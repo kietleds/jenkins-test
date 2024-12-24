@@ -48,10 +48,10 @@ pipeline {
                     // """, returnStdout: true).trim()
                     // echo "API Response: ${response}"
 
-                    // def response = sh(script: """
-                    //     curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://allowing-wallaby-game.ngrok-free.app/ds/test-executions/junit?projectKey=XGJN&testExecutionKey=XGJN-955"
-                    // """, returnStdout: true).trim()
-                    // echo "API Response: ${response}"
+                    def response = sh(script: """
+                        curl -H "Content-Type:text/xml" -H "Authorization: JWT ${token}" --data @reports/junit.xml "https://kietleds.tail305ff.ts.net/parser/ds/test-executions/junit?projectKey=XGJN&testExecutionKey=XGJN-955"
+                    """, returnStdout: true).trim()
+                    echo "API Response: ${response}"
                 }
             }
         }
