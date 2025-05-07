@@ -9,10 +9,11 @@ pipeline {
     parameters {
         string defaultValue: "TEST", description: 'Project key', name: 'PROJECT_KEY'
         string defaultValue: "TEST-1", description: 'Test execution key', name: 'TEST_EXECUTION_KEY'
+        string defaultValue: "TEST-2", description: 'custom', name: 'CUSTOM_1'
     }
 
     stages {
-           stage('Hello World') {
+        stage('Hello World') {
             steps {
                 echo 'Hello, World!'
             }
@@ -27,6 +28,7 @@ pipeline {
 
                     echo "Project key: $PROJECT_KEY"
                     echo "Test execution key: $TEST_EXECUTION_KEY"
+                    echo "Custom field: $CUSTOM_1"
 
                     def response = sh(script: """
                         curl -H "Content-Type:text/xml" -H "Authorization: JWT $token" --data @reports/junit.xml "https://kietleds.tail305ff.ts.net/parser/ds/test-executions/junit?projectKey=XGJN&testExecutionKey=XGJN-955"
