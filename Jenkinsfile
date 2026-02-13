@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         CLIENT_ID = 'xaIkb2y6ASAKJ15sfJYLZFKsxO9uoWZ2mOtXNEepyTk='
-        CLIENT_SECRET = 'c5427046f7582145bf01b5b472365f3e960360e6bf0f1581b1e724b31362559d'
+        CLIENT_SECRET = '20edc422edc3d88f89b69db5a69c641774290a5b9c201ac14d8dc9adeaae5232'
     }
 
     parameters {
