@@ -1,24 +1,7 @@
-<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
-<testsuites
-  id=""
-  name=""
-  tests="2"
-  failures="0"
-  skipped="0"
-  errors="0"
-  time="1.251732"
->
-  <testsuite
-    name="example.spec.ts"
-    timestamp="2024-01-23T03:46:55.103Z"
-    hostname="chromium"
-    tests="2"
-    failures="0"
-    skipped="0"
-    time="1.644"
-    errors="0"
-  >
-    <testcase name="get started link" classname="example.spec.ts" time="0.2">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="0.204">
+  <testsuite name="calculator" errors="0" failures="0" skipped="0" timestamp="2026-03-19T14:37:27" time="0.164" tests="1">
+    <testcase classname="calculator adds 1 + 2 to equal 3" name="calculator adds 1 + 2 to equal 3" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>
