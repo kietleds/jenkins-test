@@ -21,7 +21,7 @@ pipeline {
                     echo "API Token: ${token}"
 
                     def response = sh(script: """
-                        curl -H "Content-Type:text/xml" -H "Authorization: JWT $token" --data @reports/junit.xml "https://kietleds.tail305ff.ts.net/parser/ds/test-executions/junit?projectKey=AG&testExecutionKey=AG-20"
+                        curl -H "Content-Type:text/xml" -H "Authorization: JWT $token" --data @reports/junit.xml "https://kietleds.tail305ff.ts.net/parser/ds/test-executions/junit?projectKey=${params.PROJECT_KEY}&testExecutionKey=${params.TEST_EXECUTION_KEY}"
                     """, returnStdout: true).trim()
                     echo "API Response: ${response}"
                 }
