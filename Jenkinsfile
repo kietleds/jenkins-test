@@ -13,22 +13,12 @@ pipeline {
     }
 
     stages {
-        stage('Hello World') {
-            steps {
-                echo 'Hello, World'
-            }
-        }
-
         stage('API Call') {
             steps {
                 script {
 
                     def token = getApiToken()
                     echo "API Token: ${token}"
-
-                    echo "Project key: $PROJECT_KEY"
-                    echo "Test execution key: $TEST_EXECUTION_KEY"
-                    echo "Custom field: $CUSTOM_1"
 
                     def response = sh(script: """
                         curl -H "Content-Type:text/xml" -H "Authorization: JWT $token" --data @reports/junit.xml "https://kietleds.tail305ff.ts.net/parser/ds/test-executions/junit?projectKey=AG&testExecutionKey=AG-20"
